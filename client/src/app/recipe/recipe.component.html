@@ -1,0 +1,41 @@
+<p>recipe works!</p>
+
+<app-about></app-about>
+
+<h1>{{name}}</h1>
+
+<ul>
+  <li *ngFor="let ingredient of ingredients">{{ingredient}}</li>
+</ul>
+
+
+<textarea>{{getPosts()}}</textarea>
+
+
+
+<ul fxLayout="row-reverse" fxLayoutAlign="center center">
+  <li
+    fxFlexOffset="10%"
+    *ngFor="let post of posts"
+    [ngStyle]="{'font-size': post.id <= 2 ? '24px' : '16px' }"
+    >
+
+    <div *ngIf="post.show">
+
+      {{post.title}}
+
+      <span *ngIf="post.id === 2" (click)="onClick(post)">second one</span>
+
+      <app-recipecomment
+        [post] = "post"
+        (hidePost) = "onHide($event)">
+      </app-recipecomment>
+
+
+    </div>
+
+  </li>
+</ul>
+
+<app-createform (onSubmit)="onSubmit($event)"></app-createform>
+
