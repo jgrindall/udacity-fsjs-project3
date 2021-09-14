@@ -6,16 +6,19 @@ const store = new CartStore();
 export default express
     .Router()
 
-    //get orders by user
+    //get cart
     .get("/user/:user_id", async (req: express.Request, res: express.Response) => {
-        //const user_id = parseInt(req.params.user_id);
-        const cart:Cart = await store.getCartForUser();
+        const user_id = parseInt(req.params.user_id);
+        const cart:Cart = await store.getCartForUser(user_id);
         res
             .status(200)
             .json(cart);
     })
 
-    //add product to order, given quantity and product id
-    .post("/:order_id/products", async (req: express.Request, res: express.Response) => {
-        console.log(req, res);
+    //set cart
+    .post("/user/:user_id", async (req: express.Request, res: express.Response) => {
+        const user_id = parseInt(req.params.user_id);
+        const cart = req.body as Cart;
+        await store.setCartForUser(user_id, cart);
+        res.status(200);
     });

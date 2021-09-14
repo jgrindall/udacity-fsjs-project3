@@ -1,19 +1,22 @@
-export type Cart = {
-    id: number;
-    status: string;
-    user_id: number;
+import {Product} from "./product";
+
+export type CartItem = {
+    product_id: number;
+    count:number;
 };
+
+export type Cart = CartItem[];
+
+const cartData:Record<number, Cart> = {};
 
 export class CartStore {
     constructor() {
 
     }
-    async getCartForUser(): Promise<Cart> {
-        const cart:Cart = {
-            id: 1,
-            status: "open",
-            user_id: 1
-        };
-        return Promise.resolve(cart);
+    async getCartForUser(user_id:number): Promise<Cart> {
+        return Promise.resolve(cartData[user_id]);
+    }
+    async setCartForUser(user_id:number, cart: Cart){
+        cartData[user_id] = cart;
     }
 }

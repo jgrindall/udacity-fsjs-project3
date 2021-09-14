@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import cartRoutes from "./handlers/api/carts";
 import productRoutes from "./handlers/api/products";
+import usersRoutes from "./handlers/api/users";
 
 const app: Application = express();
 
