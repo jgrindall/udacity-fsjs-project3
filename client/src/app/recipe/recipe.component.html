@@ -9,16 +9,17 @@
 
 <textarea>{{getPosts()}}</textarea>
 
+<div fxLayout="row wrap" fxLayoutGap="16px grid" fxFlexFill fxLayoutAlign="center center">
+
+  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let post of posts">
 
 
-<ul fxLayout="row-reverse" fxLayoutAlign="center center">
-  <li
-    fxFlexOffset="10%"
-    *ngFor="let post of posts"
-    [ngStyle]="{'font-size': post.id <= 2 ? '24px' : '16px' }"
-    >
+    <mat-card *ngIf="post.show" class="mat-elevation-z4">
+    <mat-card-title>Trousers</mat-card-title>
 
-    <div *ngIf="post.show">
+    <mat-card-subtitle>	- they're great</mat-card-subtitle>
+
+    <mat-card-content>
 
       {{post.title}}
 
@@ -28,12 +29,23 @@
         [post] = "post"
         (hidePost) = "onHide($event)">
       </app-recipecomment>
+    </mat-card-content>
+
+    <img mat-card-image src="https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/960w/products/5790/22258/mt06-pleated-cotton-chino-trousers-green_1__23768.1593295529.1280.1280__77291__83785.1620305560.jpg?c=1">
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onClickView()">View</button>
+      <button mat-raised-button color="primary" (click)="onClickAddToCart()">Add to cart</button>
 
 
-    </div>
+    </mat-card-actions>
 
-  </li>
-</ul>
+    </mat-card>
+
+  </div>
+
+
+</div>
 
 <app-createform (onSubmit)="onSubmit($event)"></app-createform>
 

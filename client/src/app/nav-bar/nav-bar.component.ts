@@ -15,6 +15,10 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout(){
+
+  }
+
   login(){
     alert("login");
     const dialogRef = this.dialog.open(LoginComponent, {

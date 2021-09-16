@@ -30,8 +30,15 @@ export class RecipeComponent implements OnInit, OnDestroy {
 
   onClick(p:Post):void{
     alert("click");
-
     p.comments.push("WHAT");
+  }
+
+  onClickView(){
+
+  }
+
+  onClickAddToCart(){
+
   }
 
   onSubmit(a:{title:string, body:string}):void{

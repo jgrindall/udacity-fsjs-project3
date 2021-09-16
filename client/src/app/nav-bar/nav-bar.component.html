@@ -1,37 +1,40 @@
-<mat-sidenav-container>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div fxHide.gt-xs>
-        <button mat-icon-button>
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
-      <div>
-        <a>
-          Material Blog
-        </a>
-      </div>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+<mat-toolbar color="primary">
 
-          <li>
-            <mat-icon class="icon">input</mat-icon>
-            <a routerLink="/">Recipes</a>
-          </li>
-          <li>
-            <mat-icon class="icon">input</mat-icon>
-            <a routerLink="/history">History</a>
-          </li>
+  <span>Simple shop</span>
 
-          <li>
-            <a (click) = "login(); $event.preventDefault()">
-              <mat-icon class="icon">input</mat-icon>
-              <span class="label">Login now</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </mat-toolbar>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <span style="flex: 1 1 auto;" class="example-fill-remaining-space"></span>
 
+  <span flex></span>
+
+  <a routerLink="/">
+    <button mat-button>
+      <mat-icon>home</mat-icon>
+      Home
+    </button>
+  </a>
+
+  <a routerLink="/history">
+    <button mat-button>
+      <mat-icon>mic</mat-icon>
+      History
+    </button>
+  </a>
+
+  <a routerLink="/history">
+    <button mat-button matBadge="8" matBadgePosition="after" matBadgeColor="accent">
+      <mat-icon>shopping_cart</mat-icon>
+      Cart
+    </button>
+  </a>
+
+  <button mat-button (click) = "login(); $event.preventDefault()">
+    <mat-icon>face</mat-icon>
+    Log in
+  </button>
+
+  <button mat-button (click) = "logout();">
+    <mat-icon>logout</mat-icon>
+    Log out
+  </button>
+
+</mat-toolbar>

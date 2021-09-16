@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent} from "./login/login.component";
+
+//https://material.angular.io/components/categories
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import {LoginComponent} from "./login/login.component";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myApp';
+  title = 'Simple shop';
 
   constructor(public dialog: MatDialog) {
 

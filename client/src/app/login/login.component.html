@@ -1,22 +1,12 @@
-<div class="container">
-
-  <mat-card>
-    <mat-card-content>
-
-      <form>
-
-        <mat-form-field class="full-width-input">
-          <input type="text" required>
-        </mat-form-field>
-
-        <mat-form-field class="full-width-input">
-          <input type="password" placeholder="Password" required>
-        </mat-form-field>
-
-        <button>Login</button>
-      </form>
-
-    </mat-card-content>
-
-  </mat-card>
+<h1 mat-dialog-title>Hi</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button>No Thanks</button>
+  <button mat-raised-button cdkFocusInitial>Ok</button>
 </div>
