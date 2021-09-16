@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "../login/login.component";
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
   }
 
+  login(){
+    alert("login");
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '600px',
+      data: 'Login'
+    });
+    /* dialogRef.componentInstance.event.subscribe((result) => {
+       this.dataService.addPost(result.data);
+       this.dataSource = new PostDataSource(this.dataService);
+     });*/
+  }
+
 }
+

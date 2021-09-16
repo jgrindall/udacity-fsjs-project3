@@ -1,10 +1,37 @@
-<p>nav-bar works!</p>
-<nav>
-  <a routerLink="/">Recipes</a>
-  <a routerLink="/history">History</a>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <a>
+          Material Blog
+        </a>
+      </div>
+      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
 
-  <!--<a routerLink="libraries/{{ library.id }}"> More Details </a> -->
+          <li>
+            <mat-icon class="icon">input</mat-icon>
+            <a routerLink="/">Recipes</a>
+          </li>
+          <li>
+            <mat-icon class="icon">input</mat-icon>
+            <a routerLink="/history">History</a>
+          </li>
 
+          <li>
+            <a (click) = "login(); $event.preventDefault()">
+              <mat-icon class="icon">input</mat-icon>
+              <span class="label">Login now</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-
-</nav>
