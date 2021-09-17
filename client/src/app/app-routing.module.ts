@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RecipeComponent} from "./recipe/recipe.component";
 import {HistoryComponent} from "./history/history.component";
+import {ProductViewComponent} from "./product-view/product-view.component";
 
 const routes: Routes = [
 
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path:'history',
     component:HistoryComponent
+  },
+  {
+    path:'product/:id',
+    component:ProductViewComponent
   }
 
 

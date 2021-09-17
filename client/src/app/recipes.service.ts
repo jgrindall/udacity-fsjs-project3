@@ -11,6 +11,10 @@ export class RecipesService {
   constructor(private http: HttpClient) { }
 
 
+  // see also https://medium.com/@2muchcoffee/angular-state-management-a-must-have-for-large-scale-angular-apps-8b98e5a761c7
+
+  
+
   getUsingService(): Observable<[]> {
     return this.http.get<[]>('https://jsonplaceholder.typicode.com/comments');
   }

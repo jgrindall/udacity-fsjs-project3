@@ -1,0 +1,13 @@
+<p>product-view works!</p>
+
+<app-product-card [post]="post">
+
+  <mat-card-actions class="actions">
+
+    <button mat-raised-button color="primary">Add to cart</button>
+
+    <ng-content selector=".actions"></ng-content>
+
+  </mat-card-actions>
+
+</app-product-card>

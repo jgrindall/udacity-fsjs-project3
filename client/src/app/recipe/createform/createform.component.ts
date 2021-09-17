@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Post} from "../../types";
 
 @Component({
   selector: 'app-createform',

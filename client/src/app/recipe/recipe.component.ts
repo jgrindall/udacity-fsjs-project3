@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from "../types";
 import {RecipesService} from "../recipes.service";
+import {CartService} from "../cart.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-recipe',
@@ -12,7 +14,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
   ingredients:string[] = ["lemon", "water", "sugar"];
   posts: Post[] = [];
 
-  constructor(private service: RecipesService) {
+  constructor(private service: RecipesService, private cartService: CartService,  private router: Router) {
 
   }
 
@@ -33,12 +35,12 @@ export class RecipeComponent implements OnInit, OnDestroy {
     p.comments.push("WHAT");
   }
 
-  onClickView(){
-
+  onClickView(postId:any){
+    this.router.navigate(['/product/' + postId]);
   }
 
   onClickAddToCart(){
-
+    alert(this.cartService);
   }
 
   onSubmit(a:{title:string, body:string}):void{

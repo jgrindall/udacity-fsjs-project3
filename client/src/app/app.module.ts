@@ -55,6 +55,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LoginComponent } from './login/login.component';
+import { ProductViewComponent } from './product-view/product-view.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { LoginComponent } from './login/login.component';
     HistoryComponent,
     NavBarComponent,
     CreateformComponent,
-    LoginComponent
+    LoginComponent,
+    ProductViewComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
