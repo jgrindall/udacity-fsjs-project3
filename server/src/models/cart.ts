@@ -1,5 +1,3 @@
-import {Product} from "./product";
-
 export type CartItem = {
     product_id: number;
     count:number;

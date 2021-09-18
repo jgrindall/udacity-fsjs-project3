@@ -13,7 +13,9 @@ export class RecipecommentComponent implements OnInit {
     id:0,
     title:"",
     comments:[],
-    show:true
+    show:true,
+    description:"",
+    image:""
   };
 
   @Output()

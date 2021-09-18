@@ -1,12 +1,8 @@
-<p>product-view works!</p>
-
-<app-product-card [post]="post">
+<app-product-card [post]="post" class="view">
 
   <mat-card-actions class="actions">
 
-    <button mat-raised-button color="primary">Add to cart</button>
-
-    <ng-content selector=".actions"></ng-content>
+    <button mat-raised-button color="primary" (click)="onClickAddToCart(post)">Add to cart</button>
 
   </mat-card-actions>
 

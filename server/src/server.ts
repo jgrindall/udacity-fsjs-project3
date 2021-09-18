@@ -11,16 +11,14 @@ const port: number = 3000;
 
 app.use(bodyParser.json());
 
-// CORS-enable all end points
-app.use(
-    cors({
-        origin: "*"
-    })
-);
+app.use(cors({
+    origin: ['http://localhost:4200']
+}));
 
 // set up routing
 app.use("/api/cart/", cartRoutes);
 app.use("/api/products/", productRoutes);
+app.use("/api/users/", usersRoutes);
 
 app.get("/", function(req: Request, res: Response) {
     res.send("Hello World!");

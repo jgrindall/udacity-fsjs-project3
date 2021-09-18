@@ -12,6 +12,8 @@ export class ProductViewComponent implements OnInit {
 
   post: Post = {
     id:1,
+    description:"",
+    image:"",
   title:"",
   comments:[],
   show:true
@@ -23,12 +25,16 @@ export class ProductViewComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.post = this.service.getById(id);
-    /*this.service.getById(id).subscribe(result=>{
-      console.log(result);
-      this.post = result;
-    });*/
+    this.service
+      .getById(id)
+      .subscribe((result:Post)=>{
+        console.log(result);
+        this.post = result;
+      });
   }
 
+  onClickAddToCart(post: Post) {
+    alert(post);
+  }
 }
 

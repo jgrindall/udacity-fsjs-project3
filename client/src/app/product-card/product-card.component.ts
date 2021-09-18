@@ -12,6 +12,8 @@ export class ProductCardComponent implements OnInit {
   post:Post = {
     id:1,
     title:"",
+    description:"",
+    image:"",
     comments:[],
     show:true
   };

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from "../types";
-import {RecipesService} from "../recipes.service";
 import {CartService} from "../cart.service";
 import {Router} from "@angular/router";
+import {ProductsService} from "../products.service";
 
 @Component({
   selector: 'app-recipe',
@@ -10,11 +10,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit, OnDestroy {
-  name: string = "lemonade";
-  ingredients:string[] = ["lemon", "water", "sugar"];
   posts: Post[] = [];
 
-  constructor(private service: RecipesService, private cartService: CartService,  private router: Router) {
+  constructor(private service: ProductsService, private cartService: CartService,  private router: Router) {
 
   }
 
@@ -23,10 +21,9 @@ export class RecipeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.name = this.name + "!!";
-    this.posts = this.service.getAll();
-    this.service.getUsingService().subscribe(results=>{
-      console.log(results);
+
+    this.service.getAll().subscribe((results:Post[])=>{
+      this.posts = results;
     });
   }
 
@@ -39,7 +36,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/product/' + postId]);
   }
 
-  onClickAddToCart(){
+  onClickAddToCart(post:Post){
     alert(this.cartService);
   }
 

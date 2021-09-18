@@ -1,5 +1,6 @@
 a, a span{
   color:white !important;
+  text-decoration: none;
 }
 .mat-toolbar{
   position: fixed;
