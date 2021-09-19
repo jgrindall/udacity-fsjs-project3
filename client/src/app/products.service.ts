@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Post} from "./types";
+import {Product} from "./types";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -21,12 +21,12 @@ export class ProductsService {
     });
   }
 
-  getById(id:any): Observable<Post> {
-    return this.http.get<Post>(API + '/products/' + id);
+  getById(id:any): Observable<Product> {
+    return this.http.get<Product>(API + '/products/' + id);
   }
 
-  getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(API + '/products', {
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(API + '/products', {
       'headers': this.corsHeaders
     });
   }

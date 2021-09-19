@@ -1,4 +1,3 @@
-import {Product} from "./product";
 
 /**
  * Represents a user

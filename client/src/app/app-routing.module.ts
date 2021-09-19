@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {RecipeComponent} from "./recipe/recipe.component";
-import {HistoryComponent} from "./history/history.component";
+import {ProductsComponent} from "./products/products.component";
 import {ProductViewComponent} from "./product-view/product-view.component";
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
 
   {
     path:'',
-    component:RecipeComponent
+    component:ProductsComponent
   },
   {
-    path:'history',
-    component:HistoryComponent
+    path:'cart',
+    component:CartComponent
   },
   {
     path:'product/:id',

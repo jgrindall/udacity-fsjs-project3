@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
+import {AuthService} from "./auth.service";
+import {AuthInfo} from "./types";
+import {CartService} from "./cart.service";
 
 //https://material.angular.io/components/categories
 
@@ -11,7 +14,18 @@ import {MatDialog} from "@angular/material/dialog";
 export class AppComponent {
   title = 'Simple shop';
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private authService: AuthService, private cartService:CartService) {
 
   }
+
+  ngOnInit(){
+    this.authService.auth.subscribe((authInfo: AuthInfo | undefined)=>{
+      this.cartService.load();
+    });
+  }
+
+  onActivate() {
+    window.scroll(0,0);
+  }
+
 }

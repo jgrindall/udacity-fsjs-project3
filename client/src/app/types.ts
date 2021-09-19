@@ -1,9 +1,11 @@
-export type Post = {
+export type Product = {
   id:number;
   title: string;
   comments:string[];
+  price:number;
   description:string;
-  image:string;
+  fullDescription:string;
+  images:string[];
   show:boolean;
 }
 
@@ -14,3 +16,9 @@ export type CartItem = {
 };
 
 export type Cart = CartItem[];
+
+export type AuthInfo = {
+  user_id:number;
+  access_token:object;
+  expires:number;
+};

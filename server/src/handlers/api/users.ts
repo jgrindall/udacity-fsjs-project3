@@ -1,8 +1,6 @@
 import express from "express";
-import {UsersStore} from "../../models/users";
+import {Users, UsersStore} from "../../models/users";
 import jwt from "jsonwebtoken";
-
-const JWT_TOKEN_SECRET: string = process.env.JWT_TOKEN_SECRET as string;
 
 const store:UsersStore = new UsersStore();
 
@@ -12,17 +10,24 @@ export default express
     // login. Returns the token to be used later.
     .post("/auth", async (req: express.Request, res: express.Response) => {
         const body = req.body as {username: string; password: string};
-        const user = await store.authenticate(body.username, body.password);
+        const JWT_TOKEN_SECRET: string = process.env.JWT_TOKEN_SECRET as string;
+
+        const user: Users | null = await store.authenticate(body.username, body.password);
         if(user) {
-            const token = jwt.sign({user: user}, JWT_TOKEN_SECRET, {
+            const token:string = jwt.sign({user: user}, JWT_TOKEN_SECRET, {
                 expiresIn: "1h"
             });
+            const verify:{user:Users, exp:number} = jwt.verify(token, JWT_TOKEN_SECRET) as {user:Users, exp:number};
             res
                 .status(200)
                 .header("")
-                .json({access_token:token});
+                .json({
+                    user_id:user.id,
+                    access_token:token,
+                    expires: verify.exp
+                });
         }
-        else {
+        else{
             res
                 .status(401)
                 .json(null);

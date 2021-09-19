@@ -4,8 +4,14 @@ import cors from "cors";
 import cartRoutes from "./handlers/api/carts";
 import productRoutes from "./handlers/api/products";
 import usersRoutes from "./handlers/api/users";
+import dotenv from "dotenv";
+import path from "path";
 
 const app: Application = express();
+
+dotenv.config({
+    path: path.resolve(__dirname, "../.env")
+});
 
 const port: number = 3000;
 

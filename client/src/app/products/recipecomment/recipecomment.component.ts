@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Post} from "../../types";
+import {Product} from "../../types";
 
 @Component({
   selector: 'app-recipecomment',
@@ -9,17 +9,19 @@ import {Post} from "../../types";
 export class RecipecommentComponent implements OnInit {
 
   @Input()
-  post:Post = {
+  product:Product = {
     id:0,
     title:"",
     comments:[],
     show:true,
     description:"",
-    image:""
+    fullDescription:"",
+    price:0,
+    images:[""]
   };
 
   @Output()
-  hidePost: EventEmitter<Post> = new EventEmitter();
+  hidePost: EventEmitter<Product> = new EventEmitter();
 
   constructor() {
 
@@ -29,7 +31,7 @@ export class RecipecommentComponent implements OnInit {
   }
 
   onClickDelete(){
-    this.hidePost.emit(this.post);
+    this.hidePost.emit(this.product);
   }
 
 }

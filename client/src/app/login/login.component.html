@@ -1,22 +1,28 @@
 <h1 mat-dialog-title>Log in</h1>
 <div mat-dialog-content>
 
-  <p>Please enter your username and password</p>
+  <form #form="ngForm" (ngSubmit)="onClickSubmit()">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Username</mat-label>
-    <input matInput type="text">
-  </mat-form-field>
+    <p>Please enter your username and password</p>
 
-  <br/>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input name="username" matInput type="text" [(ngModel)]="username" required minlength="6">
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput type="password">
-  </mat-form-field>
+    <br/>
 
-</div>
-<div mat-dialog-actions>
-  <button color="primary" mat-raised-button>No Thanks</button>
-  <button color="primary" mat-raised-button cdkFocusInitial>Ok</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input name="password" matInput type="password" [(ngModel)]="password" required minlength="6">
+    </mat-form-field>
+
+
+    <div mat-dialog-actions align="end">
+      <button color="primary" mat-raised-button (click)="onCancel()">Cancel</button>
+      <button color="primary" type="submit" [disabled]="form.invalid" mat-raised-button>Log in</button>
+    </div>
+
+  </form>
+
 </div>

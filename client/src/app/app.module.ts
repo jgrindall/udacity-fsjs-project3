@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { RecipecommentComponent } from './recipe/recipecomment/recipecomment.component';
-import { HistoryComponent } from './history/history.component';
+import { ProductsComponent } from './products/products.component';
+import { RecipecommentComponent } from './products/recipecomment/recipecomment.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CreateformComponent } from './recipe/createform/createform.component';
+import { CreateformComponent } from './products/createform/createform.component';
 import {FormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -55,18 +54,25 @@ import { MatTableModule } from '@angular/material/table';
 import { LoginComponent } from './login/login.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { CartComponent } from './cart/cart.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { SizePickerComponent } from './size-picker/size-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeComponent,
+    ProductsComponent,
     RecipecommentComponent,
-    HistoryComponent,
     NavBarComponent,
     CreateformComponent,
     LoginComponent,
     ProductViewComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    CartComponent,
+    StarRatingComponent,
+    ColorPickerComponent,
+    SizePickerComponent
   ],
   imports: [
     BrowserModule,

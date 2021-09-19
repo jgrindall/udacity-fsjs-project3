@@ -5,7 +5,19 @@ export type CartItem = {
 
 export type Cart = CartItem[];
 
-const cartData:Record<number, Cart> = {};
+const cartData:Record<number, Cart> = {
+
+    1:[
+        {
+            product_id:1,
+            count:1
+        },
+        {
+            product_id: 2,
+            count: 3
+        }
+    ]
+};
 
 export class CartStore {
     constructor() {

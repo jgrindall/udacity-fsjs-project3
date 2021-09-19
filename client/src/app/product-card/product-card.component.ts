@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post} from "../types";
+import {Product} from "../types";
 
 @Component({
   selector: 'app-product-card',
@@ -9,11 +9,13 @@ import {Post} from "../types";
 export class ProductCardComponent implements OnInit {
 
   @Input()
-  post:Post = {
+  product:Product = {
     id:1,
     title:"",
     description:"",
-    image:"",
+    fullDescription:"",
+    price:0,
+    images:[""],
     comments:[],
     show:true
   };

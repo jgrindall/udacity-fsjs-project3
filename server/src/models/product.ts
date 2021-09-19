@@ -4,35 +4,55 @@ export type Product = {
     price: number;
     comments?:string[];
     description:string;
-    image:string;
+    fullDescription:string;
+    images:string[];
     show:boolean;
 };
 
 const list:Product[] = [
     {
         id: 1,
-        title: "product1",
-        description: "They're green",
-        image:"https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/960w/products/5790/22258/mt06-pleated-cotton-chino-trousers-green_1__23768.1593295529.1280.1280__77291__83785.1620305560.jpg?c=1",
-        price: 10,
+        title: "Product 1",
+        description: "1: Lorem ipsum dolor sit amet",
+        fullDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        images:[
+            "https://johnlewis.scene7.com/is/image/JohnLewis/003839248?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/003839248alt1?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/003839248alt2?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/003839248alt4?$rsp-pdp-port-640$"
+        ],
+        price: 30,
         show: true
     },
     {
         id: 2,
-        title: "product2",
-        description: "They're red",
-        image:"https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/960w/products/5790/22258/mt06-pleated-cotton-chino-trousers-green_1__23768.1593295529.1280.1280__77291__83785.1620305560.jpg?c=1",
+        title: "Product 2",
+        description: "2: Lorem ipsum dolor sit amet",
+        fullDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        images:[
+            "https://johnlewis.scene7.com/is/image/JohnLewis/005610645?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/005610645alt1?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/005610645alt2?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/005610645alt3?$rsp-pdp-port-640$"
+
+        ],
         price: 20,
         show: true
     },
     {
         id: 3,
-        title: "product3",
-        description: "They're pink",
-        image:"https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/960w/products/5790/22258/mt06-pleated-cotton-chino-trousers-green_1__23768.1593295529.1280.1280__77291__83785.1620305560.jpg?c=1",
-        price: 30,
+        title: "Product 3",
+        description: "3: Lorem ipsum dolor sit amet",
+        fullDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        images:[
+            "https://johnlewis.scene7.com/is/image/JohnLewis/004045156?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/004045156alt1?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/004045156alt4?$rsp-pdp-port-640$",
+            "https://johnlewis.scene7.com/is/image/JohnLewis/004045156alt3?$rsp-pdp-port-640$"
+        ],
+        price: 10,
         show: true
-    }
+    },
 ];
 
 export class ProductStore {

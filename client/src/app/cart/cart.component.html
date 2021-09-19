@@ -1,0 +1,32 @@
+<div *ngIf = "cart.length === 0">
+  Your cart is empty
+</div>
+
+<div *ngIf = "cart.length >= 1">
+
+  <p>Your cart:</p>
+
+  <form #form="ngForm" >
+
+  <div fxFlex=66 fxLayout="column wrap" fxLayoutGap="16px grid" fxFlexFill fxLayoutAlign="center center">
+
+    <mat-card class="mat-elevation-z4" *ngFor="let item of cart">
+
+      <p>id: {{item.product_id}}</p>
+
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input name="count" type="number" matInput [(ngModel)]="item.count">
+      </mat-form-field>
+
+    </mat-card>
+
+  </div>
+
+  <div fxFlex=33 class="info">
+    <button>Check out</button>
+  </div>
+
+  </form>
+
+</div>
