@@ -38,6 +38,21 @@ export class CartService {
     }
   }
 
+  public remove(id:number){
+    let cart:Cart = this._cart.getValue();
+    cart = cart.filter(item => item.product_id != id);
+    this.saveCart(cart);
+  }
+
+  public update(id:number, count:number){
+    let cart:Cart = this._cart.getValue();
+    const cartItem = cart.find(item => item.product_id === id);
+    if(cartItem) {
+      cartItem.count = count;
+    }
+    this.saveCart(cart);
+  }
+
   public addProduct(product:Product, count: number){
     let cart:Cart = this._cart.getValue();
     const currentItem:CartItem | undefined = cart.find(item => item.product_id === product.id);

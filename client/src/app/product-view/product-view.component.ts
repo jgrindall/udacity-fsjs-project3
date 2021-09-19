@@ -28,17 +28,16 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProductsService,
+    private productService: ProductsService,
     private snackBar: MatSnackBar,
     private cartService: CartService) {
   }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service
+    this.productService
       .getById(id)
       .subscribe((product:Product)=>{
-        console.log(product);
         this.product = product;
       });
   }

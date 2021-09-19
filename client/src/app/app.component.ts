@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "./auth.service";
 import {AuthInfo} from "./types";
 import {CartService} from "./cart.service";
+import {ProductsService} from "./products.service";
 
 //https://material.angular.io/components/categories
 
@@ -14,7 +15,7 @@ import {CartService} from "./cart.service";
 export class AppComponent {
   title = 'Simple shop';
 
-  constructor(public dialog: MatDialog, private authService: AuthService, private cartService:CartService) {
+  constructor(public dialog: MatDialog, private authService: AuthService, private cartService:CartService, private productsService: ProductsService) {
 
   }
 
@@ -22,6 +23,7 @@ export class AppComponent {
     this.authService.auth.subscribe((authInfo: AuthInfo | undefined)=>{
       this.cartService.load();
     });
+    this.productsService.load();
   }
 
   onActivate() {

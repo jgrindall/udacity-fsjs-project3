@@ -22,3 +22,7 @@ export type AuthInfo = {
   access_token:object;
   expires:number;
 };
+
+export type CartItemWithProduct = CartItem & {
+  product: Product
+}
