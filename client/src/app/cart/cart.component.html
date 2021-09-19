@@ -6,54 +6,58 @@
 
   <form #form="ngForm">
 
-  <div fxFlex="66%" fxFlex.sm="100%" fxLayout="column wrap" fxLayoutGap="16px" fxFlexFill fxLayoutAlign="center center" class="items">
+    <div class="flex-container product-view"
+         fxLayout="row"
+         fxLayout.xs="column">
 
-    <mat-card class="mat-elevation-z4" *ngFor="let item of cartCombinedWithProducts">
+      <div fxFlex="66%"  fxFlex.sm="100%">
 
-      <div style="width:200px;">
-        <img [src]="item.product.images[0]">
+        <mat-card class="mat-elevation-z4" *ngFor="let item of cartCombinedWithProducts">
+
+          <div style="width:200px;">
+            <img [src]="item.product.images[0]">
+          </div>
+
+          <div style="flex:1">
+            <p>{{item.product.title}}</p>
+            <p>{{item.product.description}}</p>
+          </div>
+
+          <div style="flex:1">
+            <p>id: {{item.product_id}}</p>
+            <p>Price: &pound;{{item.product.price}}</p>
+
+            <mat-form-field>
+              <mat-label>Quantity</mat-label>
+              <input name="count" type="number" matInput [(ngModel)]="item.count">
+            </mat-form-field>
+
+            <br/>
+
+            <mat-card-actions>
+
+              <button mat-raised-button color="primary" (click)="onClickRemove(item.product_id)">Remove</button>
+              <button mat-raised-button color="primary" (click)="onClickUpdate(item.product_id, item.count)">Update</button>
+
+            </mat-card-actions>
+
+          </div>
+
+        </mat-card>
+
+      </div>
+      <div fxFlex="33%"  fxFlex.sm="100%">
+        <mat-card class="mat-elevation-z4">
+
+          <p>Total: &pound;{{total}}</p>
+
+          <br/>
+
+          <button class="full-width" mat-raised-button color="primary" (click)="onCheckout()">Checkout</button>
+        </mat-card>
       </div>
 
-      <div style="flex:1">
-        <p>{{item.product.title}}</p>
-        <p>{{item.product.description}}</p>
-      </div>
-
-      <div style="flex:1">
-        <p>id: {{item.product_id}}</p>
-        <p>Price: &pound;{{item.product.price}}</p>
-
-        <mat-form-field>
-          <mat-label>Quantity</mat-label>
-          <input name="count" type="number" matInput [(ngModel)]="item.count">
-        </mat-form-field>
-
-        <br/>
-
-        <mat-card-actions>
-
-          <button mat-raised-button color="primary" (click)="onClickRemove(item.product_id)">Remove</button>
-          <button mat-raised-button color="primary" (click)="onClickUpdate(item.product_id, item.count)">Update</button>
-
-        </mat-card-actions>
-
-      </div>
-
-    </mat-card>
-
-  </div>
-
-  <div fxFlex="33%" fxFlex.sm="100%" class="info">
-
-    <mat-card class="mat-elevation-z4">
-
-      <p>Total: &pound;{{total}}</p>
-
-      <br/>
-
-      <button class="full-width" mat-raised-button color="primary" (click)="onCheckout()">Checkout</button>
-    </mat-card>
-  </div>
+    </div>
 
   </form>
 
