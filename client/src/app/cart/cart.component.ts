@@ -50,12 +50,10 @@ export class CartComponent implements OnInit {
 
   onClickRemove(id:number){
     this.cartService.remove(id);
-    alert(id);
   }
 
   onClickUpdate(id:number, count:number){
     this.cartService.update(id, count);
-    alert(id + " " + count);
   }
 
 }

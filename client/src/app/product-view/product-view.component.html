@@ -40,7 +40,11 @@
         <button class="full-width" mat-raised-button color="primary" (click)="onClickAddToCart()">Add to cart</button>
         <br>
         <br>
-        <button [disabled]="!addedToCart" class="full-width" mat-raised-button color="primary" >Go to cart</button>
+
+        <a routerLink="/cart">
+          <button [disabled]="!addedToCart" class="full-width" mat-raised-button color="primary" >Go to cart</button>
+        </a>
+
       </form>
     </mat-card>
   </div>

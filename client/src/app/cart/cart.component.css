@@ -3,12 +3,13 @@
 }
 
 .items .imgContainer{
-  width:200px;
+  width:160px;
 }
 
 .items .mat-card {
   max-height: 200px;
   display: flex;
+  margin-bottom:16px;
 }
 
 .items .mat-card img{
@@ -16,11 +17,18 @@
 }
 
 .info{
-  margin:16px;
-  margin-top:0;
+  margin: 0 16px 16px;
 }
 
+.md .info, .sm .info, .xs .info{
+  margin: 16px 0 0;
+}
 
+.xs .items .description{
+  display: none;
+}
 
-
-
+.actions{
+  border-left: 1px solid rgba(0,0,0,.12);
+  padding-left: 12px;
+}

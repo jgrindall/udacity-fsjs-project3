@@ -29,6 +29,10 @@ export class CartService {
     return this._cart.asObservable();
   }
 
+  public clear(){
+    this.saveToLocalStorage([]);
+  }
+
   public load(){
     if(this.authService.isLoggedIn()){
       this.loadFromDatabase();
@@ -107,6 +111,7 @@ export class CartService {
       'headers': this.corsHeaders
     }).subscribe(
       data => {
+        localStorage.removeItem("cart");
         this._cart.next(data as Cart);
       },
     );

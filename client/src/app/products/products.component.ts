@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   onClickAddToCart(product:Product){
     this.cartService.addProduct(product, 1);
     this.snackBar.open('Added to cart', 'Ok', {
-      duration: 750
+      duration: 1500
     });
   }
 }

@@ -32,13 +32,11 @@ export class AuthService {
     const expiration:(string | null) = localStorage.getItem("expires");
     if(expiration){
       const expiresAt = JSON.parse(expiration);
-      return moment().isBefore(expiresAt);
+      const now = moment();
+      const expires = moment.unix(expiresAt);
+      return now.isBefore(expires);
     }
     return false;
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
   }
 
   getJWT(): (string | null) {
@@ -54,23 +52,23 @@ export class AuthService {
       }).subscribe(
       data => {
         const authInfo = data as AuthInfo;
-        this._auth.next(authInfo);
         localStorage.setItem('access_token', JSON.stringify(authInfo.access_token));
         localStorage.setItem("expires", JSON.stringify(authInfo.expires));
         this.snackBar.open('You are now logged in', 'Ok', {
-          duration: 750
+          duration: 1500
         });
+        this._auth.next(authInfo);
       }
     )
   }
 
   logout():void{
-    this._auth.next(undefined);
     localStorage.removeItem("access_token");
     localStorage.removeItem("expires");
     this.snackBar.open('You are now logged out', 'Ok', {
-      duration: 750
+      duration: 1500
     });
+    this._auth.next(undefined);
   }
 
 }

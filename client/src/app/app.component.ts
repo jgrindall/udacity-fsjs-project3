@@ -20,8 +20,15 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    let prevAuthInfo: AuthInfo | undefined = undefined;
     this.authService.auth.subscribe((authInfo: AuthInfo | undefined)=>{
-      this.cartService.load();
+      if(prevAuthInfo && !authInfo){
+        this.cartService.clear();
+      }
+      else{
+        this.cartService.load();
+      }
+      prevAuthInfo = authInfo;
     });
     this.productsService.load();
   }
