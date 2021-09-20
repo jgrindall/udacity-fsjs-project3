@@ -1,13 +1,13 @@
 import express from "express";
 import {CartStore, Cart} from "../../models/cart";
-
+import verifyAuth from "../middleware/auth";
 const store = new CartStore();
 
 export default express
     .Router()
 
     //get cart
-    .get("/user/:user_id", async (req: express.Request, res: express.Response) => {
+    .get("/user/:user_id", [verifyAuth], async (req: express.Request, res: express.Response) => {
         const user_id = parseInt(req.params.user_id);
         const cart:Cart = await store.getCartForUser(user_id);
         res
@@ -16,7 +16,7 @@ export default express
     })
 
     //set cart
-    .post("/user/:user_id", async (req: express.Request, res: express.Response) => {
+    .post("/user/:user_id", [verifyAuth], async (req: express.Request, res: express.Response) => {
         const user_id = parseInt(req.params.user_id);
         const cart = req.body as Cart;
         await store.setCartForUser(user_id, cart);

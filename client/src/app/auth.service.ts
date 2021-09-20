@@ -52,7 +52,7 @@ export class AuthService {
       }).subscribe(
       data => {
         const authInfo = data as AuthInfo;
-        localStorage.setItem('access_token', JSON.stringify(authInfo.access_token));
+        localStorage.setItem('access_token', authInfo.access_token);
         localStorage.setItem("expires", JSON.stringify(authInfo.expires));
         this.snackBar.open('You are now logged in', 'Ok', {
           duration: 1500

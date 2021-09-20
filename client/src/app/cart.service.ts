@@ -12,12 +12,14 @@ const API:string = 'http://localhost:3000/api';
 
 export class CartService {
 
-  private readonly corsHeaders:HttpHeaders;
-
   private _cart = new BehaviorSubject<Cart>([]);
 
   constructor(private http: HttpClient, private authService:AuthService) {
-    this.corsHeaders = new HttpHeaders({
+
+  }
+
+  getHeaders(){
+    return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -85,7 +87,7 @@ export class CartService {
 
   private saveToDatabase(cart: Cart){
     this.http.post(API + '/cart/user/1', cart,{
-      'headers': this.corsHeaders
+      'headers': this.getHeaders()
     }).subscribe(
       () => {
         this._cart.next(cart);
@@ -108,7 +110,7 @@ export class CartService {
 
   private loadFromDatabase() : void{
     this.http.get(API + '/cart/user/1', {
-      'headers': this.corsHeaders
+      'headers': this.getHeaders()
     }).subscribe(
       data => {
         localStorage.removeItem("cart");

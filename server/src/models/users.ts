@@ -8,6 +8,11 @@ export type Users = {
     username: string;
 };
 
+export type TokenPayload = {
+    user:Users;
+    exp:number;
+};
+
 export class UsersStore {
     constructor() {}
 

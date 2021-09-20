@@ -19,7 +19,7 @@ export type Cart = CartItem[];
 
 export type AuthInfo = {
   user_id:number;
-  access_token:object;
+  access_token:string;
   expires:number;
 };
 

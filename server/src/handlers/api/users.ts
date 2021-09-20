@@ -1,5 +1,5 @@
 import express from "express";
-import {Users, UsersStore} from "../../models/users";
+import {TokenPayload, Users, UsersStore} from "../../models/users";
 import jwt from "jsonwebtoken";
 
 const store:UsersStore = new UsersStore();
@@ -17,7 +17,7 @@ export default express
             const token:string = jwt.sign({user: user}, JWT_TOKEN_SECRET, {
                 expiresIn: "1h"
             });
-            const verify:{user:Users, exp:number} = jwt.verify(token, JWT_TOKEN_SECRET) as {user:Users, exp:number};
+            const verify:TokenPayload = jwt.verify(token, JWT_TOKEN_SECRET) as TokenPayload;
             res
                 .status(200)
                 .header("")

@@ -19,6 +19,9 @@ Rubric
 
 - An order confirmation page (e.g. a “success” page) is shown to the user after successful checkout
 
+- verify token
+
+
 
 
 
