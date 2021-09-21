@@ -22,7 +22,7 @@
             <p>Price: &pound;{{item.product.price}}</p>
             <br/>
 
-            <mat-form-field>
+            <mat-form-field appearance="fill">
               <mat-label>Quantity</mat-label>
               <input [name]="'count' + _index" type="number" min="1" max="999" matInput [(ngModel)]="item.count">
             </mat-form-field>
@@ -36,12 +36,12 @@
         </mat-card>
       </div>
       <div fxFlex="33%"  fxFlex.md="100%" class="info">
-        <mat-card class="mat-elevation-z4">
-          <mat-card-content>
+        <mat-card class="mat-elevation-z4 full-width">
+          <mat-card-content class="full-width">
             <p>Total: &pound;{{total}}</p>
             <br/>
             <br/>
-            <a routerLink="/checkout">
+            <a routerLink="/checkout" class="full-width">
               <button class="full-width" mat-raised-button color="primary">Checkout</button>
             </a>
           </mat-card-content>

@@ -10,50 +10,114 @@
 
 </div>
 
-
-
 <div *ngIf = "isLoggedIn" class="checkout">
-
-
+  <form>
   <mat-stepper linear>
-
     <mat-step label="Shipping address">
-      <form >
+      <div class="center">
+        <mat-label class="outer">Address Line 1</mat-label>
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+          <mat-label>Address Line 1</mat-label>
+          <input matInput required minlength="6" maxlength="128">
         </mat-form-field>
         <br/>
         <br/>
+        <mat-label class="outer">Address Line 2</mat-label>
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+          <mat-label>Address Line 2</mat-label>
+          <input matInput >
         </mat-form-field>
         <br/>
         <br/>
+        <mat-label class="outer">City</mat-label>
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+          <mat-label>City</mat-label>
+          <input matInput required minlength="3" maxlength="128">
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-label class="outer">State/Province/Region</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>State/Province/Region</mat-label>
+          <input matInput >
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-label class="outer">ZIP/Post code</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>ZIP/Post code</mat-label>
+          <input matInput minlength="3" maxlength="128">
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-label class="outer">Country</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select placeholder="Select" required>
+            <mat-option *ngFor="let country of countries">
+              {{country}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
-      </form>
+        <div class="buttons">
+          <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+        </div>
+
+      </div>
     </mat-step>
-
     <mat-step label="Confirm & pay">
-      <form >
+      <div class="center">
+        <mat-label class="outer">Card number</mat-label>
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+
+          <mat-label>Card number</mat-label>
+          <input matInput required minlength="10" maxlength="32">
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-label class="outer">Name on card</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>Name on card</mat-label>
+          <input matInput required minlength="3" maxlength="128">
+        </mat-form-field>
+        <br/>
+        <br/>
+        <mat-label class="outer">Expiration (mm/yyyy)</mat-label>
+        <mat-form-field appearance="fill" class="small">
+          <mat-label>mm</mat-label>
+            <mat-select placeholder="Select" required>
+              <mat-option *ngFor="let month of months">
+                {{month}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="small">
+          <mat-label>yyyy</mat-label>
+            <mat-select placeholder="Select" required>
+              <mat-option *ngFor="let year of years">
+                {{year}}
+              </mat-option>
+            </mat-select>
         </mat-form-field>
 
-      </form>
+        <div class="buttons">
+          <button mat-raised-button color="primary" matStepperPrevious type="button">Back</button>
+          <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+        </div>
+
+      </div>
     </mat-step>
-
-
     <mat-step label="Order complete">
-      <p>You are now done.</p>
+      <div class="center">
+        <p>Thanks, your order is complete</p>
+        <div class="buttons">
+          <a routerLink="/">
+            <button mat-raised-button color="primary" type="button">Ok</button>
+          </a>
+        </div>
+      </div>
     </mat-step>
   </mat-stepper>
-
-
+  </form>
 </div>

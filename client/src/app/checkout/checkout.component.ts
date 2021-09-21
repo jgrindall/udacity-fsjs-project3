@@ -14,6 +14,12 @@ export class CheckoutComponent implements OnInit {
 
   isLoggedIn:boolean = false;
 
+  months:string[] = ["01", "02", "03"];
+  years:string[] = ["2021", "2022", "2023", "2024", "2025"];
+
+  countries:string[] = 
+
+
   constructor(private authService:AuthService, public dialog: MatDialog, ) { }
 
   ngOnInit(): void {
