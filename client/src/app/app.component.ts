@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {AuthInfo} from "./types";
 import {CartService} from "./cart.service";
 import {ProductsService} from "./products.service";
+import {CheckoutDialogComponent} from "./checkout-dialog/checkout-dialog.component";
 
 //https://material.angular.io/components/categories
 
@@ -17,13 +18,20 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog, private authService: AuthService, private cartService:CartService, private productsService: ProductsService) {
 
+    const dialogRef = this.dialog.open(CheckoutDialogComponent, {
+      width: '400px',
+      data: 'Please wait',
+      disableClose: true
+    });
+
   }
 
   ngOnInit(){
     let prevAuthInfo: AuthInfo | undefined = undefined;
     this.authService.auth.subscribe((authInfo: AuthInfo | undefined)=>{
       if(prevAuthInfo && !authInfo){
-        this.cartService.clear();
+        // logout
+        this.cartService.onLogout();
       }
       else{
         this.cartService.load();

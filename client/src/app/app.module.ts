@@ -9,6 +9,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CreateformComponent } from './products/createform/createform.component';
 import {FormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -60,6 +62,7 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { SizePickerComponent } from './size-picker/size-picker.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SignupComponent } from './signup/signup.component';
+import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import { SignupComponent } from './signup/signup.component';
     ColorPickerComponent,
     SizePickerComponent,
     CheckoutComponent,
-    SignupComponent
+    SignupComponent,
+    CheckoutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,7 @@ import { SignupComponent } from './signup/signup.component';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -99,7 +104,6 @@ import { SignupComponent } from './signup/signup.component';
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule,
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,

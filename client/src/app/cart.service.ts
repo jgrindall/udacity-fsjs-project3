@@ -35,8 +35,12 @@ export class CartService {
     return this._cart.asObservable();
   }
 
-  public clear(){
+  public onLogout(){
     this.saveToLocalStorage([]);
+  }
+
+  public clear(){
+    this.saveCart([]);
   }
 
   public load(){
