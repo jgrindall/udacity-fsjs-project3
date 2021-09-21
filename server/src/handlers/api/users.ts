@@ -1,9 +1,10 @@
 import express from "express";
 import {TokenPayload, Users, UsersStore} from "../../models/users";
 import jwt from "jsonwebtoken";
-import {Cart} from "../../models/cart";
+import {Cart, CartStore} from "../../models/cart";
 
-const store:UsersStore = new UsersStore();
+const userStore:UsersStore = new UsersStore();
+const cartStore:CartStore = new CartStore();
 
 export default express
     .Router()
@@ -13,8 +14,11 @@ export default express
         const body = req.body as {username: string; password: string, cart?: Cart};
         const JWT_TOKEN_SECRET: string = process.env.JWT_TOKEN_SECRET as string;
 
-        const user: Users | null = await store.authenticate(body.username, body.password);
+        const user: Users | null = await userStore.authenticate(body.username, body.password);
         if(user) {
+            if(body.cart as Cart){
+                await cartStore.setCartForUser(user.id, body.cart as Cart)
+            }
             const token:string = jwt.sign({user: user}, JWT_TOKEN_SECRET, {
                 expiresIn: "1h"
             });
