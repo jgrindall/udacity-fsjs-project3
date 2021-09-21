@@ -35,3 +35,9 @@ mat-form-field.small{
 .text-danger{
   color:#f44336;
 }
+
+.not-done{
+  font-size: smaller;
+  color:#999;
+  margin:12px;
+}

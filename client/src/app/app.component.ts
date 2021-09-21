@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "./auth.service";
 import {AuthInfo} from "./types";
 import {CartService} from "./cart.service";
 import {ProductsService} from "./products.service";
-import {CheckoutDialogComponent} from "./checkout-dialog/checkout-dialog.component";
-
-//https://material.angular.io/components/categories
 
 @Component({
   selector: 'app-root',
@@ -16,14 +12,11 @@ import {CheckoutDialogComponent} from "./checkout-dialog/checkout-dialog.compone
 export class AppComponent {
   title = 'Simple shop';
 
-  constructor(public dialog: MatDialog, private authService: AuthService, private cartService:CartService, private productsService: ProductsService) {
-
-    const dialogRef = this.dialog.open(CheckoutDialogComponent, {
-      width: '400px',
-      data: 'Please wait',
-      disableClose: true
-    });
-
+  constructor(
+    private authService: AuthService,
+    private cartService:CartService,
+    private productsService: ProductsService
+  ) {
   }
 
   ngOnInit(){
@@ -38,11 +31,22 @@ export class AppComponent {
       }
       prevAuthInfo = authInfo;
     });
+
+    /**
+     * load all products
+     */
     this.productsService.load();
   }
 
+  /**
+   * Fix scrolling
+   */
   onActivate() {
     window.scroll(0,0);
+  }
+
+  canActivate(){
+    console.log("can");
   }
 
 }
