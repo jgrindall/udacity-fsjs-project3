@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from "../cart.service";
 import {Product, CartItemWithProduct, CartItem, Cart} from "../types";
 import {ProductsService} from "../products.service";
-import {combineLatest} from "rxjs";
+import {combineLatest, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-cart',
@@ -17,34 +17,44 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private productService:ProductsService) {
   }
 
-  onCheckout(){
-    alert("checkout");
+  /**
+   * join the cart and products together to make 'cartCombinedWithProducts' and 'total'
+   */
+  ngOnInit(): void {
+    const s: Subscription = combineLatest([this.cartService.cart, this.productService.products]).subscribe(results => {
+      this.update(results[0], results[1]);
+    });
+
   }
 
-  ngOnInit(): void {
-    combineLatest([this.cartService.cart, this.productService.products]).subscribe(results => {
+  update(cart:Cart, products: Product[]){
+    const getProductById = (id:number) : (Product | undefined) =>{
+      return products.find((product: Product) => product.id === id);
+    };
 
-      const products:Product[] = results[1];
-
-      const getProductById = (id:number) : (Product | undefined) =>{
-        return products.find((product: Product) => product.id === id);
-      };
-
-      const matchingProducts:Cart = results[0].filter((cartItem:CartItem)=> {
-        return !!getProductById(cartItem.product_id);
-      });
-
-      this.cartCombinedWithProducts = matchingProducts.map((cartItem:CartItem)=>{
-        const product = getProductById(cartItem.product_id) as Product;
-        return {
-          ...cartItem,
-          product:product
-        };
-      });
-      this.total = this.cartCombinedWithProducts.reduce((memo:number, current: CartItem & { product: Product })=>{
-        return memo + current.count * current.product.price;
-      }, 0);
+    const matchingProducts:Cart = cart.filter((cartItem:CartItem)=> {
+      return !!getProductById(cartItem.product_id);
     });
+
+    const cartCombinedWithProducts = matchingProducts.map((cartItem:CartItem)=>{
+      const product = getProductById(cartItem.product_id) as Product;
+      return {
+        ...cartItem,
+        product:product
+      };
+    });
+
+    /**
+     * clone it to make sure we don't do any updates until we press the Update button
+     */
+
+    this.cartCombinedWithProducts = JSON.parse(JSON.stringify(cartCombinedWithProducts));
+
+    this.total = this.cartCombinedWithProducts.reduce((memo:number, current: CartItemWithProduct)=>{
+      return memo + current.count * current.product.price;
+    }, 0);
+
+    console.log(this.cartCombinedWithProducts);
 
   }
 

@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../auth.service";
-import {AuthInfo} from "../types";
-
+import {AuthInfo, Cart} from "../types";
+import {CartService} from "../cart.service";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   @Output()
   onClose: EventEmitter<any> = new EventEmitter();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.authService.auth.subscribe((data: AuthInfo | undefined)=>{
@@ -26,15 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   onClickSubmit(){
-    this.login();
+    this.authService.login(this.username, this.password, this.cartService.getCart());
   }
 
   onCancel(){
     this.onClose.emit();
-  }
-
-  login(){
-    this.authService.login(this.username, this.password);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Cart, CartItem, Product} from "./types";
 import {AuthService} from "./auth.service";
 
@@ -15,7 +15,7 @@ export class CartService {
   private _cart = new BehaviorSubject<Cart>([]);
 
   constructor(private http: HttpClient, private authService:AuthService) {
-
+   
   }
 
   getHeaders(){
@@ -27,7 +27,11 @@ export class CartService {
     });
   }
 
-  get cart(){
+  getCart():Cart{
+    return this._cart.getValue();
+  }
+
+  get cart(): Observable<Cart>{
     return this._cart.asObservable();
   }
 

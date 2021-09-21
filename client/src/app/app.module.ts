@@ -58,6 +58,8 @@ import { CartComponent } from './cart/cart.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { SizePickerComponent } from './size-picker/size-picker.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { SizePickerComponent } from './size-picker/size-picker.component';
     CartComponent,
     StarRatingComponent,
     ColorPickerComponent,
-    SizePickerComponent
+    SizePickerComponent,
+    CheckoutComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

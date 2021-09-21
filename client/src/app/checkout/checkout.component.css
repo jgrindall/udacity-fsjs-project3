@@ -1,0 +1,15 @@
+.checkout-choice{
+  width:350px;
+  display: flex;
+  text-align: center;
+  margin:auto;
+  margin-top:80px;
+}
+
+.checkout-choice button{
+  min-width: 220px;
+  margin-bottom:16px;
+}
+.checkout-choice mat-card{
+  width: 100%;
+}

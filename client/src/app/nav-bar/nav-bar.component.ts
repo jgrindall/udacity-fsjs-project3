@@ -23,7 +23,6 @@ export class NavBarComponent implements OnInit {
       this.userLoggedIn = !!data;
     });
     this.cartService.cart.subscribe(cart=>{
-      debugger;
       this.cartSize = cart.length;
     });
   }

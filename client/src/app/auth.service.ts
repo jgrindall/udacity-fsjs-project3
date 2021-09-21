@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AuthInfo} from "./types";
+import {AuthInfo, Cart} from "./types";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -22,38 +22,58 @@ export class AuthService {
       'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
+    if(this.isLoggedIn()){
+      this._auth.next(this.loadAuthInfo());
+    }
   }
 
   get auth(){
     return this._auth.asObservable();
   }
 
-  public isLoggedIn() {
-    const expiration:(string | null) = localStorage.getItem("expires");
+  private loadAuthInfo(): AuthInfo | undefined{
+    const authInfo = localStorage.getItem("authInfo");
+    if(authInfo){
+      return JSON.parse(authInfo) as AuthInfo;
+    }
+    return undefined
+
+  }
+
+  public isLoggedIn() : boolean{
+    const authInfo = this.loadAuthInfo();
+    if(!authInfo){
+      return false;
+    }
+    const expiration:number = authInfo.expires;
     if(expiration){
-      const expiresAt = JSON.parse(expiration);
       const now = moment();
-      const expires = moment.unix(expiresAt);
+      const expires = moment.unix(expiration);
       return now.isBefore(expires);
     }
     return false;
   }
 
   getJWT(): (string | null) {
-    return localStorage.getItem("access_token");
+    const authInfo = this.loadAuthInfo();
+    if(!authInfo){
+      return null;
+    }
+    return authInfo.access_token;
   }
 
-  login(username: string, password: string): void {
+  login(username: string, password: string, cart?: Cart): void {
     this.http.post(API + '/users/auth', {
-      username,
-      password},
+        username,
+        password,
+        cart
+      },
       {
         'headers': this.corsHeaders
       }).subscribe(
       data => {
         const authInfo = data as AuthInfo;
-        localStorage.setItem('access_token', authInfo.access_token);
-        localStorage.setItem("expires", JSON.stringify(authInfo.expires));
+        localStorage.setItem('authInfo', JSON.stringify(authInfo));
         this.snackBar.open('You are now logged in', 'Ok', {
           duration: 1500
         });
@@ -62,9 +82,12 @@ export class AuthService {
     )
   }
 
+  signup(username: string, password: string, cart?: Cart): void {
+    alert("sign up");
+  }
+
   logout():void{
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("expires");
+    localStorage.removeItem("authInfo");
     this.snackBar.open('You are now logged out', 'Ok', {
       duration: 1500
     });
