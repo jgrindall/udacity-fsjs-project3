@@ -1,13 +1,8 @@
-export type Product = {
-    id: number;
-    title: string;
-    price: number;
-    comments?:string[];
-    description:string;
-    fullDescription:string;
-    images:string[];
-    show:boolean;
-};
+import {Product} from "../../../types/types";
+
+/**
+ * There is no database, just a hard-coded list of products
+  */
 
 const list:Product[] = [
     {

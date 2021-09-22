@@ -1,5 +1,6 @@
 import express from "express";
-import {ProductStore, Product} from "../../models/product";
+import {ProductStore} from "../../models/product";
+import {Product} from "../../../../types/types";
 
 const store = new ProductStore();
 

@@ -1,45 +1,55 @@
+/**
+ * Handles auth
+ * We store the JWT in local storage
+ */
+
 import { Injectable } from '@angular/core';
 import {AuthInfo, Cart} from "./types";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import * as moment from "moment";
-
-const API:string = 'http://localhost:3000/api';
+import {HEADERS, API} from "./consts";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly corsHeaders:HttpHeaders;
-
   private _auth = new BehaviorSubject<AuthInfo | undefined>(undefined);
 
+  /**
+   * check if we are logged in, if so inform subscribers
+   * @param http
+   * @param snackBar
+   */
   constructor(private http:HttpClient, private snackBar: MatSnackBar) {
-    this.corsHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    });
     if(this.isLoggedIn()){
       this._auth.next(this.loadAuthInfo());
     }
   }
 
-  get auth(){
+  /**
+   * observe
+   */
+  get authObs(){
     return this._auth.asObservable();
   }
 
+  /**
+   * get info from Local Storage
+   */
   private loadAuthInfo(): AuthInfo | undefined{
     const authInfo = localStorage.getItem("authInfo");
     if(authInfo){
       return JSON.parse(authInfo) as AuthInfo;
     }
-    return undefined
-
+    return undefined;
   }
 
+  /**
+   * Check if logged in. We are logged in if our token is valid
+   */
   public isLoggedIn() : boolean{
     const authInfo = this.loadAuthInfo();
     if(!authInfo){
@@ -54,14 +64,20 @@ export class AuthService {
     return false;
   }
 
+  /**
+   * Get token for API
+   */
   getJWT(): (string | null) {
     const authInfo = this.loadAuthInfo();
-    if(!authInfo){
-      return null;
-    }
-    return authInfo.access_token;
+    return authInfo ? authInfo.access_token : null;
   }
 
+  /**
+   * try to login. If we also have a cart, set it
+   * @param username
+   * @param password
+   * @param cart
+   */
   login(username: string, password: string, cart?: Cart): void {
     this.http.post(API + '/users/auth', {
         username,
@@ -69,7 +85,7 @@ export class AuthService {
         cart
       },
       {
-        'headers': this.corsHeaders
+        'headers': new HttpHeaders(HEADERS)
       }).subscribe(
       data => {
         const authInfo = data as AuthInfo;
@@ -82,10 +98,9 @@ export class AuthService {
     )
   }
 
-  signup(username: string, password: string, cart?: Cart): void {
-    alert("sign up");
-  }
-
+  /**
+   * logout. Clear LS and publish.
+   */
   logout():void{
     localStorage.removeItem("authInfo");
     this.snackBar.open('You are now logged out', 'Ok', {

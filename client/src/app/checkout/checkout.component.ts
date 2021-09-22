@@ -1,11 +1,18 @@
+/** mat-stepper which takes you through checkout **/
+
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import {AuthService} from "../auth.service";
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
-import {SignupComponent} from "../signup/signup.component";
 import {AuthInfo} from "../types";
 import {CheckoutDialogComponent} from "../checkout-dialog/checkout-dialog.component";
+import {Subscription} from "rxjs";
+
+
+/**
+ * for simplicity all min/max lengths are 3,32
+  */
 
 const MIN_LENGTH = 3;
 const MAX_LENGTH = 32;
@@ -17,8 +24,14 @@ const MAX_LENGTH = 32;
 })
 export class CheckoutComponent implements OnInit {
 
+  /**
+   * if not logged in, show "login/create account" buttons
+   */
   isLoggedIn:boolean = false;
 
+  /**
+   * form fields
+   */
   fields:Record<number, string[]>;
 
   fieldLabels:Record<string, string>;
@@ -147,7 +160,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.auth.subscribe((data: AuthInfo | undefined)=>{
+    /**
+     * update "isLoggedIn"
+     */
+    this.authService.authObs.subscribe((data: AuthInfo | undefined)=>{
       if(data) {
         this.isLoggedIn = !!data;
       }
@@ -155,36 +171,37 @@ export class CheckoutComponent implements OnInit {
   }
 
   onClickSignIn(){
-    const dialogRef = this.dialog.open(LoginComponent, {
+    let dialogRef = this.dialog.open(LoginComponent, {
       width: '600px',
       data: 'Login'
     });
-    dialogRef.componentInstance.onClose.subscribe(()=>{
+    const subscription:Subscription = dialogRef.componentInstance.onClose.subscribe(()=>{
       dialogRef.close();
-    });
-  }
-  onClickGuest(){
-    const dialogRef = this.dialog.open(SignupComponent, {
-      width: '600px',
-      data: 'Create an account'
-    });
-    dialogRef.componentInstance.onClose.subscribe(()=>{
-      dialogRef.close();
+      subscription.unsubscribe();
     });
   }
 
-  isCompleted(i:number): boolean{
-    return this.getErrors(i, false).length === 0;
+  /**
+   * is stage i complete? If so allow them to move on
+   * @param stage
+   */
+  isCompleted(stage:number): boolean{
+    return this.getErrors(stage, false).length === 0;
   }
 
   onClickSubmit(){
-    const dialogRef = this.dialog.open(CheckoutDialogComponent, {
+    this.dialog.open(CheckoutDialogComponent, {
       width: '400px',
       data: 'Please wait',
       disableClose: true
     });
   }
 
+  /**
+   * get errors for stage i
+   * @param stage
+   * @param dirtyCheck
+   */
   getErrors(stage:number, dirtyCheck:boolean):string[]{
     let fields:string[] = this.fields[stage] || [];
     let errors:string[] = [];

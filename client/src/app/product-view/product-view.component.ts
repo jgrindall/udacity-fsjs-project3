@@ -12,18 +12,16 @@ import {CartService} from "../cart.service";
 })
 export class ProductViewComponent implements OnInit {
 
-  product: Product = {
-    id:1,
-    description:"",
-    fullDescription:"",
-    price:0,
-    images:[""],
-  title:"",
-  comments:[],
-  show:true
-  };
+  product?: Product;
 
+  /**
+   * default to adding one
+   */
   count:number = 1;
+
+  /**
+   * when we have added we show the "go to cart" button
+   */
   addedToCart:boolean = false;
 
   constructor(
@@ -33,17 +31,22 @@ export class ProductViewComponent implements OnInit {
     private cartService: CartService) {
   }
 
+  /**
+   * load the product
+   */
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.productService
-      .getById(id)
-      .subscribe((product:Product)=>{
-        this.product = product;
-      });
+    const id:string = this.route.snapshot.paramMap.get('id') as string;
+    if(id){
+      this.productService
+        .getById(parseInt(id))
+        .subscribe((product:Product)=>{
+          this.product = product;
+        });
+    }
   }
 
   onClickAddToCart() {
-    this.cartService.addProduct(this.product, this.count);
+    this.cartService.addProduct(this.product as Product, this.count);
     this.snackBar.open('Added to cart', 'Ok', {
       duration: 750
     });

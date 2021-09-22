@@ -1,9 +1,14 @@
+/**
+ * show products
+ */
+
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from "../types";
 import {CartService} from "../cart.service";
 import {Router} from "@angular/router";
 import {ProductsService} from "../products.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-recipe',
@@ -12,9 +17,19 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
+  /**
+   * list of products
+   */
   products: Product[] = [];
 
-  constructor(private productService: ProductsService, private cartService: CartService,  private router: Router, private snackBar: MatSnackBar) {
+  subscription?: Subscription;
+
+  constructor(
+    private productService: ProductsService,
+    private cartService: CartService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
 
   }
 
@@ -23,21 +38,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.productService.products.subscribe((products:Product[])=>{
+    this.subscription = this.productService.productsObs.subscribe((products:Product[])=>{
       this.products = products;
     });
   }
 
   ngOnDestroy(): void {
-
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
-  onClick(p:Product):void{
-    alert("click");
-    p.comments.push("WHAT");
-  }
-
-  onClickView(postId:any){
+  onClickView(postId:number){
     this.router.navigate(['/product/' + postId]);
   }
 

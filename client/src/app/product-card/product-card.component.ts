@@ -9,20 +9,7 @@ import {Product} from "../types";
 export class ProductCardComponent implements OnInit {
 
   @Input()
-  product:Product = {
-    id:1,
-    title:"",
-    description:"",
-    fullDescription:"",
-    price:0,
-    images:[""],
-    comments:[],
-    show:true
-  };
-
-  constructor() {
-
-  }
+  product?:Product;
 
   ngOnInit(): void {
   }

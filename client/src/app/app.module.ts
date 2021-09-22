@@ -33,7 +33,6 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { SizePickerComponent } from './size-picker/size-picker.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { SignupComponent } from './signup/signup.component';
 import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 
 @NgModule({
@@ -49,7 +48,6 @@ import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.compo
     ColorPickerComponent,
     SizePickerComponent,
     CheckoutComponent,
-    SignupComponent,
     CheckoutDialogComponent
   ],
   imports: [

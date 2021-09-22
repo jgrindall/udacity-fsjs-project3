@@ -19,9 +19,12 @@ export class AppComponent {
   ) {
   }
 
+  /**
+   * Listen to changes in auth status.
+   */
   ngOnInit(){
     let prevAuthInfo: AuthInfo | undefined = undefined;
-    this.authService.auth.subscribe((authInfo: AuthInfo | undefined)=>{
+    this.authService.authObs.subscribe((authInfo: AuthInfo | undefined)=>{
       if(prevAuthInfo && !authInfo){
         // logout
         this.cartService.onLogout();
@@ -43,10 +46,6 @@ export class AppComponent {
    */
   onActivate() {
     window.scroll(0,0);
-  }
-
-  canActivate(){
-    console.log("can");
   }
 
 }

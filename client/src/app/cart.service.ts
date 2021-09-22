@@ -1,10 +1,14 @@
+/**
+ * Load/save shopping cart.
+ * We store the cart in local storage if they are not logged in, otherwise we store it on the server.
+ */
+
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Cart, CartItem, Product} from "./types";
 import {AuthService} from "./auth.service";
-
-const API:string = 'http://localhost:3000/api';
+import {HEADERS, API} from "./consts";
 
 @Injectable({
   providedIn: 'root'
@@ -18,31 +22,47 @@ export class CartService {
 
   }
 
-  getHeaders(){
+  /**
+   * these API calls require a token
+   */
+  private getHeaders(){
     return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      ...HEADERS,
       'Authorization': 'JWT ' + this.authService.getJWT()
     });
   }
 
-  getCart():Cart{
+  /**
+   * get current cart
+   */
+  public getCart():Cart{
     return this._cart.getValue();
   }
 
-  get cart(): Observable<Cart>{
+  /**
+   * observe the cart
+   */
+  get cartObs(): Observable<Cart>{
     return this._cart.asObservable();
   }
 
+  /**
+   * wipe local storage when we logout
+   */
   public onLogout(){
     this.saveToLocalStorage([]);
   }
 
+  /**
+   * wipe the cart
+   */
   public clear(){
     this.saveCart([]);
   }
 
+  /**
+   * load (from LS or server)
+   */
   public load(){
     if(this.authService.isLoggedIn()){
       this.loadFromDatabase();
@@ -52,12 +72,21 @@ export class CartService {
     }
   }
 
-  public remove(id:number){
+  /**
+   * remove a product from the cart
+   * @param productId
+   */
+  public remove(productId:number){
     let cart:Cart = this._cart.getValue();
-    cart = cart.filter(item => item.product_id != id);
+    cart = cart.filter(item => item.product_id != productId);
     this.saveCart(cart);
   }
 
+  /**
+   * update cart quantity
+   * @param id
+   * @param count
+   */
   public update(id:number, count:number){
     let cart:Cart = this._cart.getValue();
     const cartItem = cart.find(item => item.product_id === id);
@@ -67,10 +96,16 @@ export class CartService {
     this.saveCart(cart);
   }
 
+  /**
+   * add product to the cart
+   * @param product
+   * @param count
+   */
   public addProduct(product:Product, count: number){
     let cart:Cart = this._cart.getValue();
     const currentItem:CartItem | undefined = cart.find(item => item.product_id === product.id);
     if(currentItem){
+      // already exists - just increment
       currentItem.count ++;
     }
     else{

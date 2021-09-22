@@ -1,3 +1,7 @@
+/**
+ * Well done message
+ */
+
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../cart.service";
 
@@ -13,6 +17,7 @@ export class CheckoutDialogComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    // spin for a while and then say "thanks"
     setTimeout(()=>{
       this.success = true;
       this.cartService.clear();

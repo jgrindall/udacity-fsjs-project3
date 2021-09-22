@@ -1,23 +1,10 @@
-
-/**
- * Represents a user
- */
-
-export type Users = {
-    id: number;
-    username: string;
-};
-
-export type TokenPayload = {
-    user:Users;
-    exp:number;
-};
+import {Users} from "../types";
 
 export class UsersStore {
     constructor() {}
 
     /**
-     * login.
+     * login. Currently there is no database and just one user.
      * */
     async authenticate(username: string, password: string): Promise<Users | null> {
         if(username === "username" && password === "udac1ty") {

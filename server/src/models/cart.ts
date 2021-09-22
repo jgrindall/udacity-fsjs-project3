@@ -1,11 +1,7 @@
-export type CartItem = {
-    product_id: number;
-    count:number;
-};
-
-export type Cart = CartItem[];
+import {Cart} from "../../../types/types";
 
 const cartData:Record<number, Cart> = {
+   // there is no database, I simply map user id to cart.
 };
 
 export class CartStore {
