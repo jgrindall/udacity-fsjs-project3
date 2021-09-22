@@ -16,7 +16,7 @@
 
 - The folder 'server' contains the nodejs app.
 
-- The folder ';ib' contains some types such as "Product" which are shared between the two
+- The folder 'lib' contains some types such as "Product" which are shared between the two
 
 - any api calls to the 'cart' are protected by a JWT.
 
@@ -27,6 +27,8 @@
 - Users can edit their cart and then log in when they want to checkout
 
 - Or they can log in first and edit their cart.
+
+- For simplicity the checkout input fields are all validated with minlength=3, maxlength=32 regardless of what they are for.
 
 - The UI is based on material design.
 
