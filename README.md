@@ -32,6 +32,8 @@
 
 - A video shows the basic functionality.
 
+[![Watch the video]](shop.mp4)
+
 ----
 
 #Building and running
