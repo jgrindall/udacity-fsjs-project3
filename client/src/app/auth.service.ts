@@ -82,7 +82,7 @@ export class AuthService {
     this.http.post(API + '/users/auth', {
         username,
         password,
-        cart
+        cart: cart && cart.length >= 1 ? cart : null
       },
       {
         'headers': new HttpHeaders(HEADERS)

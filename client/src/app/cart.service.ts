@@ -49,7 +49,7 @@ export class CartService {
   /**
    * wipe local storage when we logout
    */
-  public onLogout(){
+  public clearLocalStorage(){
     this.saveToLocalStorage([]);
   }
 

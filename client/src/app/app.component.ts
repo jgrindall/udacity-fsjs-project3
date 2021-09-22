@@ -26,12 +26,13 @@ export class AppComponent {
     let prevAuthInfo: AuthInfo | undefined = undefined;
     this.authService.authObs.subscribe((authInfo: AuthInfo | undefined)=>{
       if(prevAuthInfo && !authInfo){
-        // logout
-        this.cartService.onLogout();
+        /**
+         * when we switch from logged in to logged out we clear local storage.
+         * it doesn't make sense to re-load a cart which may have been saved in LS before we logged in
+          */
+        this.cartService.clearLocalStorage();
       }
-      else{
-        this.cartService.load();
-      }
+      this.cartService.load();
       prevAuthInfo = authInfo;
     });
 

@@ -66,8 +66,6 @@ export class CartComponent implements OnInit, OnDestroy {
       return memo + current.count * current.product.price;
     }, 0);
 
-    console.log(this.cartCombinedWithProducts);
-
   }
 
   onClickRemove(id: number) {
