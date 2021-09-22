@@ -1,6 +1,6 @@
 import express from "express";
 import {ProductStore} from "../../models/product";
-import {Product} from "../../../../types/types";
+import {Product} from "../../types";
 
 const store = new ProductStore();
 

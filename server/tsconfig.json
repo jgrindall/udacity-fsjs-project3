@@ -8,8 +8,7 @@
             "dom"
         ],
         "rootDirs": [
-            "./src",
-            "../types"
+            "./src"
         ],
         "strict": true,
         "esModuleInterop": true,
@@ -17,6 +16,11 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
+    "references":[
+        {
+            "path": "../lib"
+        }
+    ],
     "exclude": [
         "node_modules",
         "./dist",

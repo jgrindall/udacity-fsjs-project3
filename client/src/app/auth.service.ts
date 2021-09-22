@@ -1,6 +1,8 @@
 /**
  * Handles auth
  * We store the JWT in local storage
+ *
+ * Inspired by https://blog.angular-university.io/angular-jwt-authentication/
  */
 
 import { Injectable } from '@angular/core';

@@ -1,4 +1,4 @@
-import {Cart} from "../../../types/types";
+import {Cart} from "../types";
 
 const cartData:Record<number, Cart> = {
    // there is no database, I simply map user id to cart.

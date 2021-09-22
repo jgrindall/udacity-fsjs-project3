@@ -1,4 +1,4 @@
-import * as SharedTypes from "../../../types/types";
+import * as SharedTypes from "../../../lib";
 
 export type Product = SharedTypes.Product;
 export type CartItemWithProduct = SharedTypes.CartItemWithProduct;

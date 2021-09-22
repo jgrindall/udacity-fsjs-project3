@@ -1,4 +1,4 @@
-import {Product} from "../../../types/types";
+import {Product} from "../types";
 
 /**
  * There is no database, just a hard-coded list of products

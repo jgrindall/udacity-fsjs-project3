@@ -2,8 +2,7 @@ import express from "express";
 import {UsersStore} from "../../models/users";
 import jwt from "jsonwebtoken";
 import {CartStore} from "../../models/cart";
-import {TokenPayload, Users} from "../../types";
-import {Cart} from "../../../../types/types";
+import {TokenPayload, Users, Cart} from "../../types";
 
 const userStore:UsersStore = new UsersStore();
 const cartStore:CartStore = new CartStore();

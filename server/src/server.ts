@@ -9,16 +9,22 @@ import path from "path";
 
 const app: Application = express();
 
+console.log(__dirname);
+
 dotenv.config({
     path: path.resolve(__dirname, "../.env")
 });
+
+console.log("load", process.env.JWT_TOKEN_SECRET);
 
 const port: number = 3000;
 
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: ['http://localhost:4200']
+    origin: [
+        'http://localhost:4200'
+    ]
 }));
 
 // set up routing

@@ -4,7 +4,7 @@
 
 import express from "express";
 import jwt from "jsonwebtoken";
-import {TokenPayload} from "../../../src/types";
+import {TokenPayload} from "../../types";
 
 const verifyAuth = (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {

@@ -1,5 +1,5 @@
 import express from "express";
-import { Cart} from "../../../../types/types";
+import { Cart} from "../../types";
 import {CartStore} from "../../models/cart";
 import verifyAuth from "../middleware/auth";
 const store = new CartStore();

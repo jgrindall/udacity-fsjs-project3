@@ -21,6 +21,12 @@
       "dom"
     ]
   },
+  "references":[
+    {
+      "path": "../lib",
+      "prepend": true
+    }
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
